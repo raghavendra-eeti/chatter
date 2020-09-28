@@ -34,7 +34,7 @@ module.exports = (io, socket, rooms, roomIds, users) => {
         const room = rooms.find((r) => r.id === channelId);
         if (room) {
             if (room.userList.find((user) => user.name === name))
-                socket.emit("failure", "Display name taken");
+                socket.emit("failure", "name-taken");
             else {
                 socket.join(channelId);
                 const room = rooms.find((room) => room.id === channelId);
@@ -49,7 +49,7 @@ module.exports = (io, socket, rooms, roomIds, users) => {
                 });
                 socket.emit("joined", name, channelId, participants);
             }
-        } else socket.emit("failure", "Invalid Channel ID");
+        } else socket.emit("failure", "invalid-ID");
     });
 
     socket.on("message", (message) => {

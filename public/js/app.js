@@ -54,6 +54,7 @@ const addMessage = (message) => {
     messages.appendChild(message);
     const linebreak = document.createElement("br");
     messages.appendChild(linebreak);
+    linebreak.scrollIntoView(true);
 };
 
 // Handle send message
@@ -104,10 +105,17 @@ socket.on("user-disconnect", (name, color) => {
     const text = "User has disconnected";
     const message = templateMessage(name, color, text);
     addMessage(message);
+    const participants = document.querySelector("#participants-list");
+    participants.childNodes.forEach((child) => {
+        if (child.tagName === "P") if (child.innerText === name) child.remove();
+    });
 });
 
-socket.on("failure", (message) => {
-    console.log(message);
+socket.on("failure", (type) => {
+    let message;
+    if (type === "invalid-id") message = "Could not find the channel";
+    else message = "Display name is already in use";
+    updateJoinError(message);
 });
 
 // Handle : Join / Create
