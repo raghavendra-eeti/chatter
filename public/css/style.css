@@ -1,0 +1,197 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1.1rem;
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#landing {
+    position: absolute;
+    width: 40%;
+    top: 30%;
+}
+
+#chat {
+    position: absolute;
+    width: 90%;
+    top: 15%;
+    height: 85%;
+    display: flex;
+    flex-direction: row;
+}
+
+.logo {
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    font-size: 50px;
+    color: #086972;
+    margin-bottom: 20px;
+}
+
+.label {
+    display: inline-block;
+    height: 50%;
+    width: 50%;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-weight: 400;
+    color: #086972;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+}
+
+.label--active {
+    border-bottom: 2px solid #086972;
+    font-weight: 500;
+    cursor: default;
+}
+
+.label:hover {
+    font-weight: 500;
+}
+
+#forms {
+    padding-top: 30px;
+}
+
+.form {
+    display: flex;
+    margin: auto;
+    width: 100%;
+    flex-direction: column;
+}
+
+.input {
+    margin-bottom: 10px;
+    outline: none;
+    border: none;
+    font-size: 1.1rem;
+    padding: 10px;
+    border: 1px solid #b8b0b0;
+    padding-left: 20px;
+    color: #086972;
+}
+
+.input::placeholder {
+    color: #b8b0b0;
+}
+
+.input:focus {
+    border: 1px solid #086972;
+}
+
+a, a:visited {
+    color: #086972;
+    text-decoration: none;
+}
+
+.button {
+    border: none;
+    font-size: 1.1rem;
+    background: none;
+    border: 1px solid #086972;
+    color: #086972;
+    padding: 10px;
+    outline: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 300ms ease-in-out;  
+}
+
+.button:hover {
+    border: none;
+    background: #086972;
+    border: 1px solid transparent;
+    color: white;
+}
+
+.error {
+    border: 1px solid red;
+    margin: 25px 0px;
+    font-size: 0.8rem;
+    padding: 7px;
+    color: red;
+    text-align: center;
+}
+
+#info {
+    width: 40%;
+    height: 80%;
+    text-align: center;
+}
+
+#channelid {
+    text-align: center;
+    color: #086972;  
+    margin-top: 20px;
+}
+
+#channelidspan {
+    background-color: #086972;
+    padding: 8px 20px;
+    margin: 5px auto 10px auto;
+    display: inline-block; 
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: white;
+}
+
+#participants {
+    text-align: center;
+    max-height: 85%;
+    color: #086972;  
+    margin-top: 20px;
+}
+
+#participants-list {
+    border: 1px solid #086972;
+    max-height: 50%;
+    padding: 30px;
+    overflow: auto;
+}
+
+.participant {
+    padding: 10px;
+}
+
+#chatbox {
+    width: 60%;
+    padding: 0 30px;
+    height: 90%;
+}
+
+#messages {
+    height: 500px;
+    border: 1px solid #086972;
+    margin-bottom: 10px;
+    overflow: auto;
+}
+
+#message__form {
+    display: flex;
+    flex-direction: row;
+}
+
+#message__input {
+    flex-grow: 1;
+    margin: 0;
+}
+
+.message {
+    display: inline-block;
+    padding: 10px 30px;
+    margin: 10px;
+}
+
+.hidden {
+    display: none !important;
+}
