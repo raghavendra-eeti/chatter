@@ -53,6 +53,7 @@ module.exports = (io, socket, rooms, roomIds, users) => {
     });
 
     socket.on("message", (message) => {
+        if (!user) return;
         const user = users.find((user) => user.id === socket.id);
         const room = user.room;
         const channelId = room.id;
