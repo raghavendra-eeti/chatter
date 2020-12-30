@@ -45,6 +45,27 @@ const templateMessage = (name, color, text) => {
     return element;
 };
 
+const templateImage = (name, color, link) => {
+
+    const element = document.createElement("div");
+    const nameElement = document.createElement("p");
+    nameElement.style = `color: ${color}; font-weight: bold;`;
+    nameElement.innerText = name;
+    const imageElement = document.createElement("img");
+    imageElement.src = link;
+    imageElement.style.width = '300px'
+    imageElement.style.cursor = 'pointer'
+    imageElement.addEventListener("click", () => {
+        window.open(link)
+    })
+    element.appendChild(nameElement);
+    element.appendChild(imageElement);
+    element.style = `border-left: 2px solid ${color}`;
+    element.classList.add("message");
+    return element;
+
+};
+
 const addParticipant = (participant) => {
     document.querySelector("#participants-list").appendChild(participant);
 };
@@ -59,12 +80,21 @@ const addMessage = (message) => {
 
 // Handle send message
 const messageForm = document.querySelector("#message__form");
+
 messageForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const text = messageForm.elements["text"].value.trim();
     socket.emit("message", text);
     messageForm.elements["text"].value = "";
 });
+
+const addImage = document.querySelector("#add-image__button");
+addImage.addEventListener("click", () => {
+    let link = prompt("Paste image link");
+    link = link.trim()
+    if (link)
+        socket.emit("image", link);
+})
 
 // Socket io
 const socket = io();
@@ -90,6 +120,11 @@ socket.on("joined", (name, channelId, priorParticipants) => {
 
 socket.on("new-message", (name, color, text) => {
     const message = templateMessage(name, color, text);
+    addMessage(message);
+});
+
+socket.on("new-image", (name, color, link) => {
+    const message = templateImage(name, color, link);
     addMessage(message);
 });
 

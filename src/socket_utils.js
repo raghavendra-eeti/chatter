@@ -60,6 +60,15 @@ module.exports = (io, socket, rooms, roomIds, users) => {
         io.in(channelId).emit("new-message", user.name, user.color, message);
     });
 
+    socket.on("image", (image) => {
+        console.log(image)
+        const user = users.find((user) => user.id === socket.id);
+        if (!user) return;
+        const room = user.room;
+        const channelId = room.id;
+        io.in(channelId).emit("new-image", user.name, user.color, image);
+    });
+
     socket.on("disconnect", () => {
         let user = users.find((user) => user.id === socket.id);
         if (!user) return;
